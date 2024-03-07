@@ -45,9 +45,16 @@ export class BookmarkService {
     bookmarkDto: EditBookmarkDto,
   ) {
     try {
+      const isBookmark = await this.prisma.bookmark.findUnique({
+        where: { id: bookmarkId },
+      });
+
+      if (!isBookmark || isBookmark.userId !== userId)
+        throw new ForbiddenException('Access Deined');
+
       return await this.prisma.bookmark.update({
         where: { id: bookmarkId, userId: userId },
-        data: bookmarkDto,
+        data: { ...bookmarkDto },
       });
     } catch (error) {
       throw new ForbiddenException(error);
@@ -56,6 +63,13 @@ export class BookmarkService {
 
   async deleteBookmarkById(userId: number, bookmarkId: number) {
     try {
+      const isBookmark = await this.prisma.bookmark.findUnique({
+        where: { id: bookmarkId },
+      });
+
+      if (!isBookmark || isBookmark.userId !== userId)
+        throw new ForbiddenException('Access Deined');
+      
       return await this.prisma.bookmark.delete({
         where: { id: bookmarkId, userId: userId },
       });

@@ -55,6 +55,7 @@ export class BookmarkController {
     );
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   deleteBookmarkById(
     @getUser('id') userId: number,

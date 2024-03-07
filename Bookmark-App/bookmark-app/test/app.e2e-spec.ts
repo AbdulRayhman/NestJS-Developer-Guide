@@ -195,14 +195,18 @@ describe('AppController (e2e)', () => {
 
     describe('Get Bookmark by Id', () => {
       it('should give bookmark by Id', () => {
-        return pactum
-          .spec()
-          .withHeaders({
-            Authorization: 'Bearer $S{userAccessToken}',
-          })
-          .get('bookmarks/$S{bookmarkId}')
-          .expectStatus(200)
-          .expectJsonSchema({ type: 'object' });
+        return (
+          pactum
+            .spec()
+            .withHeaders({
+              Authorization: 'Bearer $S{userAccessToken}',
+            })
+            // .get('bookmarks/$S{bookmarkId}') one way doing it
+            .get('bookmarks/{id}')
+            .withPathParams('id', '$S{bookmarkId}')
+            .expectStatus(200)
+            .expectJsonSchema({ type: 'object' })
+        );
       });
     });
 
@@ -218,7 +222,8 @@ describe('AppController (e2e)', () => {
           .withHeaders({
             Authorization: 'Bearer $S{userAccessToken}',
           })
-          .patch('bookmarks/$S{bookmarkId}')
+          .patch('bookmarks/{id}')
+          .withPathParams('id', '$S{bookmarkId}')
           .withBody(editedBookmark)
           .expectStatus(200)
           .expectJsonSchema({ type: 'object' });
@@ -233,7 +238,7 @@ describe('AppController (e2e)', () => {
             Authorization: 'Bearer $S{userAccessToken}',
           })
           .delete('bookmarks/$S{bookmarkId}')
-          .expectStatus(200)
+          .expectStatus(204)
           .inspect();
       });
     });
