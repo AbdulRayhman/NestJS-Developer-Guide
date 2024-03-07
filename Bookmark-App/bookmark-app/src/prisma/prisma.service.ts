@@ -7,4 +7,8 @@ export class PrismaService extends PrismaClient {
   constructor(config: ConfigService) {
     super({ datasources: { db: { url: config.get('DATABASE_URL') } } });
   }
+
+  cleanDB() {
+    this.$transaction([this.user.deleteMany(), this.bookmark.deleteMany()]);
+  }
 }
