@@ -27,3 +27,4 @@ jobs:
 
     - name: Run Project
       run: npm run start:dev
+      working-directory: ./bookmark-app
