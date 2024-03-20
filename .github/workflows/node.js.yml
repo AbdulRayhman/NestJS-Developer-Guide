@@ -10,6 +10,16 @@ on:
     branches: [ "main" ]
 
 jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest  
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432  
   build:
     runs-on: ubuntu-latest
     steps:
