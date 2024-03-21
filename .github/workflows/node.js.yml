@@ -20,14 +20,15 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 18
-
-    - name: Start services with docker-compose
-        run: docker-compose up test-db -d
         
     - name: Install Dependencies 
       run: npm ci
       working-directory: ./bookmark-app
 
+    - name: Start services with docker-compose
+      working-directory: ./bookmark-app
+      run: npm run db:test:restart
+    
     - name: Run Project
       run: npm run start:dev
       working-directory: ./bookmark-app
