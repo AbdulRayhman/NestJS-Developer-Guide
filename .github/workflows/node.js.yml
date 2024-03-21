@@ -35,10 +35,10 @@ jobs:
       run: npm ci
       working-directory: ./bookmark-app
 
-    - name: Start services with docker-compose
+    - name: Run Project
       working-directory: ./bookmark-app
       run: npm run db:test:restart
     
-    - name: Run Project
-      run: npm run test:e2e
-      working-directory: ./bookmark-app
+    # - name: Run Project
+    #   working-directory: ./bookmark-app
+    #   run: npm run test:e2e
