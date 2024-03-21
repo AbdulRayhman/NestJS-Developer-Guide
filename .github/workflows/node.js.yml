@@ -12,7 +12,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: 
+      NAME: test
+    
     steps:
+    - name: Read Secret Values
+      run echo "My Secret is: ${{secret.JWT_SECRET}}"
+      
     - name: Check out repository code
       uses: actions/checkout@v3
       
