@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     environment: test
     env: 
@@ -38,3 +38,12 @@ jobs:
     - name: Run Project
       working-directory: ./bookmark-app
       run: npm run test:e2e:ci
+
+  build:
+    runs-on: ubuntu-latest
+    environment: dev
+    env:
+      NAME: dev
+    steps:
+    - name: Read Secret Values
+      run: echo "My Secret is ${{ secrets.JWT_SECRET }}"
