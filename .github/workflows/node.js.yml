@@ -40,5 +40,5 @@ jobs:
       run: npm run db:test:restart
     
     - name: Run Project
-      run: npm run start:dev
+      run: npm run test:e2e
       working-directory: ./bookmark-app
