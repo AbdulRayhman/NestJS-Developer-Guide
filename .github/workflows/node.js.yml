@@ -47,3 +47,10 @@ jobs:
     steps:
     - name: Read Secret Values
       run: echo "My Secret is ${{ secrets.JWT_SECRET }}"
+      
+    - name: Read Secret Values
+      run: echo "My Secret is ${{ secrets.JWT_SECRET }}"
+      
+    - name: Build Project
+      working-directory: ./bookmark-app
+      run: npm run build
