@@ -11,7 +11,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { getUser } from 'src/auth/decorators/get-user.decorator';
+import { getUser } from 'src/auth/decorators';
 import { JwtGuard } from 'src/auth/guard';
 import { BookmarkService } from 'src/bookmark/bookmark.service';
 import { CreateBookmarkDto, EditBookmarkDto } from 'src/bookmark/dto';
