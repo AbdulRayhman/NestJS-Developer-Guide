@@ -21,7 +21,7 @@ jobs:
       run: echo "My Secret is ${{ secrets.JWT_SECRET }}"
       
     - name: Read Variables Values
-      run: echo "My Secret is ${{ vars.JWT_SECRET }}"
+      run: echo "My Variables is ${{ vars.JWT_SECRET }} ${{env.NAME}}"
       
     - name: Check out repository code
       uses: actions/checkout@v3
