@@ -17,7 +17,7 @@ jobs:
     
     steps:
     - name: Read Secret Values
-      run: echo "My Secret is ${{secret.JWT_SECRET}}"
+      run: echo "My Secret is ${{secrets.JWT_SECRET}}"
       
     - name: Check out repository code
       uses: actions/checkout@v3
