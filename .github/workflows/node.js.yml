@@ -37,5 +37,5 @@ jobs:
 
     - name: Run Project
       working-directory: ./bookmark-app
-      # run: npm run db:test:restart
       run: npm run test:e2e
+
