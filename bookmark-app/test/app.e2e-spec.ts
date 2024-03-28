@@ -46,9 +46,9 @@ describe('AppController (e2e)', () => {
           .withBody({ email: dto.email })
           .expectStatus(400);
       });
-      it('should sign-up', () => {
+      it('should sign-up', async () => {
         const dto: AuthDto = { email: 'test1@yopmail.com', password: '123' };
-        return pactum
+        return await pactum
           .spec()
           .post('auth/signup')
           .withBody(dto)
