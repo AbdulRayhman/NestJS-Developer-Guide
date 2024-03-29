@@ -8,9 +8,7 @@ export class PrismaService extends PrismaClient {
     super({
       datasources: {
         db: {
-          url: config.get(
-            'postgresql://nest_owner:s2wydTkhbPL6@ep-damp-tooth-a2ymrfar.eu-central-1.aws.neon.tech/nest?sslmode=require',
-          ),
+          url: 'postgresql://nest_owner:s2wydTkhbPL6@ep-damp-tooth-a2ymrfar.eu-central-1.aws.neon.tech/nest?sslmode=require',
         },
       },
     });
