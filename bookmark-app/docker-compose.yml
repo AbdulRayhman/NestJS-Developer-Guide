@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   dev-db:
+    container_name: postgresDevDB
     image: postgres:13
     ports:
       - 5432:5432
@@ -11,6 +12,7 @@ services:
     networks:
       - freecodecamp
   test-db:
+    container_name: postgresTestDB
     image: postgres:13
     ports:
       - 5434:5432
@@ -20,5 +22,31 @@ services:
       - POSTGRES_DB=nest
     networks:
     - freecodecamp
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - dev-db
+    volumes:
+      - ./src:/app/src
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    ports:
+      - '5050:80'
+    depends_on:
+      - dev-db
 networks:
   freecodecamp:
