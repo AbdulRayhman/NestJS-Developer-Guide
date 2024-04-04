@@ -67,3 +67,7 @@ jobs:
     - name: Build Project
       working-directory: ./bookmark-app
       run: npm run build
+    
+    - name: Dockerize Project
+      working-directory: ./bookmark-app
+      run: docker compose up --build
